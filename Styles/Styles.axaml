@@ -1,0 +1,79 @@
+<!-- Styles/Styles.axaml -->
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Base Style for All Windows -->
+    <Style Selector="Window">
+        <Setter Property="Background" Value="#F5F5F5"/>
+        <Setter Property="FontFamily" Value="Segoe UI, sans-serif"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+
+    <!-- Base Style for Buttons -->
+    <Style Selector="Button">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Margin" Value="5,5,5,0"/>
+        <Setter Property="Background" Value="#2196F3"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="CornerRadius" Value="5"/>
+    </Style>
+
+    <!-- Hover Style for Buttons -->
+    <Style Selector="Button:pointerover">
+        <Setter Property="Background" Value="#1E88E5"/>
+    </Style>
+
+    <!-- Disabled Style for Buttons -->
+    <Style Selector="Button:disabled">
+        <Setter Property="Background" Value="#B0BEC5"/>
+        <Setter Property="Foreground" Value="#ECEFF1"/>
+    </Style>
+
+    <!-- Style for ListBox -->
+    <Style Selector="ListBox">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="BorderBrush" Value="#DDD"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <!-- Style for ListBoxItem -->
+    <Style Selector="ListBoxItem">
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="5,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="#DDD"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="5"/>
+    </Style>
+
+    <!-- Style for TextBox -->
+    <Style Selector="TextBox">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="0,5,0,10"/>
+        <Setter Property="BorderBrush" Value="#DDD"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <!-- Style for CheckBox -->
+    <Style Selector="CheckBox">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Margin" Value="0,5,0,10"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <!-- Style for TextBlock -->
+    <Style Selector="TextBlock">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Margin" Value="0,0,0,5"/>
+    </Style>
+</Styles>
+

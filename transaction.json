@@ -1,0 +1,82 @@
+[
+  {
+    "Id": -1418145278,
+    "Description": "tax",
+    "Amount": 100.0,
+    "Date": "2024-06-13T07:40:11.0743917+01:00",
+    "IsIncome": false,
+    "Category": "Govermnet"
+  },
+  {
+    "Id": 1576919228,
+    "Description": "Work",
+    "Amount": 1589.0,
+    "Date": "2024-06-13T07:46:04.1995518+01:00",
+    "IsIncome": true,
+    "Category": "Income"
+  },
+  {
+    "Id": 577770936,
+    "Description": "Job",
+    "Amount": 190.0,
+    "Date": "2024-06-13T08:00:02.3409577+01:00",
+    "IsIncome": true,
+    "Category": "Work"
+  },
+  {
+    "Id": -1876803566,
+    "Description": "bills",
+    "Amount": 180.0,
+    "Date": "2024-06-13T08:00:32.2170826+01:00",
+    "IsIncome": false,
+    "Category": "Phone"
+  },
+  {
+    "Id": 1494207690,
+    "Description": "Taxi payment",
+    "Amount": 20.0,
+    "Date": "2024-06-13T08:02:22.2935525+01:00",
+    "IsIncome": false,
+    "Category": "Transport"
+  },
+  {
+    "Id": 491040652,
+    "Description": "Gang",
+    "Amount": 130.0,
+    "Date": "2024-06-13T08:54:32.7469558+01:00",
+    "IsIncome": false,
+    "Category": "sdsd"
+  },
+  {
+    "Id": -538515748,
+    "Description": "bug fix",
+    "Amount": 900.0,
+    "Date": "2024-06-14T01:25:31.0257328+01:00",
+    "IsIncome": true,
+    "Category": "Work"
+  },
+  {
+    "Id": -112705764,
+    "Description": "Zakat",
+    "Amount": 100000.0,
+    "Date": "2024-06-14T02:08:24.7944385+01:00",
+    "IsIncome": false,
+    "Category": "Fard"
+  },
+  {
+    "Id": 92596384,
+    "Description": "Tax",
+    "Amount": 600.0,
+    "Date": "2024-06-14T02:12:17.3937+01:00",
+    "IsIncome": false,
+    "Category": "Government"
+  },
+  {
+    "Id": 974548146,
+    "Description": "A bag Init",
+    "Amount": 500.0,
+    "Date": "2024-06-14T02:12:41.9752704+01:00",
+    "IsIncome": true,
+    "Category": "moeny"
+  }
+]

@@ -1,0 +1,15 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:fluent="clr-namespace:Avalonia.Themes.Fluent;assembly=Avalonia.Themes.Fluent"
+             xmlns:converters="clr-namespace:PersonalFinanceTracker.Converters"
+             x:Class="PersonalFinanceTracker.App"
+             RequestedThemeVariant="Default">
+    <Application.Resources>
+        <converters:BoolToIncomeExpenseConverter x:Key="BoolToIncomeExpenseConverter"/>
+        <converters:BoolToIconConverter x:Key="BoolToIconConverter"/>
+    </Application.Resources>
+    <Application.Styles>
+        <fluent:FluentTheme />
+        <StyleInclude Source="avares://PersonalFinanceTracker/Styles/Styles.axaml"/>
+    </Application.Styles>
+</Application>

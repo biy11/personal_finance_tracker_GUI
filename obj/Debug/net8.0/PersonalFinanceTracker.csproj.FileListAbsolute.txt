@@ -1,0 +1,7 @@
+/home/bilal/C#/PersonalFinanceTracker/obj/Debug/net8.0/PersonalFinanceTracker.csproj.AssemblyReference.cache
+/home/bilal/C#/PersonalFinanceTracker/obj/Debug/net8.0/Avalonia/Resources.Inputs.cache
+/home/bilal/C#/PersonalFinanceTracker/obj/Debug/net8.0/Avalonia/resources
+/home/bilal/C#/PersonalFinanceTracker/obj/Debug/net8.0/PersonalFinanceTracker.GeneratedMSBuildEditorConfig.editorconfig
+/home/bilal/C#/PersonalFinanceTracker/obj/Debug/net8.0/PersonalFinanceTracker.AssemblyInfoInputs.cache
+/home/bilal/C#/PersonalFinanceTracker/obj/Debug/net8.0/PersonalFinanceTracker.AssemblyInfo.cs
+/home/bilal/C#/PersonalFinanceTracker/obj/Debug/net8.0/PersonalFinanceTracker.csproj.CoreCompileInputs.cache

@@ -1,0 +1,124 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="PersonalFinanceTracker.Views.MainWindow"
+        Title="Finance Tracker"
+        Width="800" Height="600"
+        CanResize="False"
+        Background="#f0f4f8"> <!-- Light Background Color -->
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+        <Style Selector="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Styles>
+    <StackPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock x:Name="MainMenuHeader" Text="Finance Tracker Main Menu" FontSize="28" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center" Foreground="#333"/>
+
+        <Border Background="#ffffff" Padding="20" CornerRadius="10" Margin="10">
+            <StackPanel x:Name="MainMenuSection" HorizontalAlignment="Center">
+                <Button Content="Transactions" Click="ShowTransactionsMenu_Click"/>
+                <Button Content="Generate Summary Report" Click="GenerateSummaryReport_Click"/>
+                <Button Content="Exit" Click="Exit_Click"/>
+            </StackPanel>
+        </Border>
+
+        <Border Background="#ffffff" Padding="20" CornerRadius="10" Margin="10" IsVisible="{Binding TransactionsMenuSectionIsVisible}">
+            <StackPanel x:Name="TransactionsMenuSection" HorizontalAlignment="Center">
+                <TextBlock Text="Transactions" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center" Foreground="#333"/>
+                <Button Content="Back" Click="BackToMenu_Click"/>
+                <Button Content="Add Transaction" Click="AddTransaction_Click"/>
+                <Button Content="View Transactions" Click="ViewTransactions_Click"/>
+                <Button Content="Delete Transaction" Click="DeleteTransaction_Click"/>
+            </StackPanel>
+        </Border>
+
+        <Border Background="#ffffff" Padding="20" CornerRadius="10" Margin="10" IsVisible="{Binding AddTransactionSectionIsVisible}">
+            <StackPanel x:Name="AddTransactionSection" HorizontalAlignment="Center">
+                <TextBlock Text="Add Transaction" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center" Foreground="#333"/>
+                <Button Content="Back" Click="BackToTransactionsMenu_Click"/>
+                <TextBlock Text="Description"/>
+                <TextBox x:Name="DescriptionTextBox" Width="200"/>
+                <TextBlock Text="Category"/>
+                <TextBox x:Name="CategoryTextBox" Width="200"/>
+                <TextBlock Text="Amount"/>
+                <TextBox x:Name="AmountTextBox" Width="200"/>
+                <TextBlock Text="Is Income"/>
+                <CheckBox x:Name="IsIncomeCheckBox" HorizontalAlignment="Center"/>
+                <Button Content="Add" Click="OnAddClick"/>
+            </StackPanel>
+        </Border>
+
+        <Border Background="#ffffff" Padding="20" CornerRadius="10" Margin="10" IsVisible="{Binding ViewTransactionsSectionIsVisible}">
+            <StackPanel x:Name="ViewTransactionsSection" HorizontalAlignment="Center">
+                <TextBlock Text="View Transactions" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center" Foreground="#333"/>
+                <Button Content="Back" Click="BackToTransactionsMenu_Click"/>
+                <ListBox x:Name="TransactionsListBox" Margin="0,20,0,0" Height="450" Width="750" Background="#f9f9f9" Foreground="Black">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding IsIncome, Converter={StaticResource BoolToIconConverter}}" FontFamily="FontAwesome" FontSize="18" VerticalAlignment="Center" Grid.Column="0" Margin="5"/>
+                                <StackPanel Orientation="Horizontal" Spacing="5" Grid.Column="1">
+                                    <TextBlock Text="{Binding Description}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+                                    <TextBlock Text="(" FontSize="14" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Category}" FontSize="14" Foreground="Gray" VerticalAlignment="Center"/>
+                                    <TextBlock Text=")" FontSize="14" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Amount, StringFormat='{}{0:C}'}" FontSize="14" VerticalAlignment="Center" Foreground="{Binding IsIncome, Converter={StaticResource BoolToIncomeExpenseConverter}}" Grid.Column="2" Margin="5"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </Border>
+
+        <Border Background="#ffffff" Padding="20" CornerRadius="10" Margin="10" IsVisible="{Binding DeleteTransactionSectionIsVisible}">
+            <StackPanel x:Name="DeleteTransactionSection" HorizontalAlignment="Center">
+                <TextBlock Text="Delete Transaction" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center" Foreground="#333"/>
+                <Button Content="Back" Click="BackToTransactionsMenu_Click"/>
+                <ListBox x:Name="TransactionsListBoxForDelete" Margin="0,20,0,0" Height="350" Width="650" Background="#f9f9f9" Foreground="Black">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding IsIncome, Converter={StaticResource BoolToIconConverter}}" FontFamily="FontAwesome" FontSize="18" VerticalAlignment="Center" Grid.Column="0" Margin="5"/>
+                                <StackPanel Orientation="Horizontal" Spacing="5" Grid.Column="1">
+                                    <TextBlock Text="{Binding Description}" FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+                                    <TextBlock Text="(" FontSize="14" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Category}" FontSize="14" Foreground="Gray" VerticalAlignment="Center"/>
+                                    <TextBlock Text=")" FontSize="14" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Amount, StringFormat='{}{0:C}'}" FontSize="14" VerticalAlignment="Center" Foreground="{Binding IsIncome, Converter={StaticResource BoolToIncomeExpenseConverter}}" Grid.Column="2" Margin="5"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button Content="Delete" Click="OnDeleteClick"/>
+            </StackPanel>
+        </Border>
+
+        <Border Background="#ffffff" Padding="20" CornerRadius="10" Margin="10" IsVisible="{Binding SummaryReportSectionIsVisible}">
+            <StackPanel x:Name="SummaryReportSection" HorizontalAlignment="Center">
+                <TextBlock Text="Financial Summary Report" FontSize="24" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center" Foreground="#333"/>
+                <Button Content="Back" Click="BackToMenu_Click"/>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Window>
