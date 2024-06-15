@@ -1,4 +1,4 @@
-// App.axaml
+// App.axaml.cs
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;

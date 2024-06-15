@@ -1,3 +1,4 @@
+//Views/MainWindow.axaml.cs
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -20,7 +21,11 @@ namespace PersonalFinanceTracker.Views
         {
             InitializeComponent();
             DataContext = this;
-        }
+
+            HideAllSections();
+            MainMenuHeader.IsVisible = true;
+            MainMenuSection.IsVisible = true;
+            }
 
         private void ShowTransactionsMenu_Click(object sender, RoutedEventArgs e)
         {

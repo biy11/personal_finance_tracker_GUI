@@ -1,4 +1,4 @@
-// Transaction.cs
+// Models/Transaction.cs
 using System;
 
 namespace PersonalFinanceTracker.Models
