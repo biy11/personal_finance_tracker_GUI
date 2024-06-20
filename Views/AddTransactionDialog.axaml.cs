@@ -1,4 +1,3 @@
-// Views/AddTransactionDialog.axaml.cs
 #nullable enable
 
 using Avalonia;
@@ -29,6 +28,18 @@ namespace PersonalFinanceTracker.Views
             if (string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(category))
             {
                 ShowError("Description and Category cannot be empty!");
+                return;
+            }
+
+            if (description.Length > 50)
+            {
+                ShowError("Description cannot exceed 50 characters!");
+                return;
+            }
+
+            if (category.Length > 30)
+            {
+                ShowError("Category cannot exceed 30 characters!");
                 return;
             }
 

@@ -1,19 +1,20 @@
-<!-- Views/AddTransactionDialog.axaml -->
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="PersonalFinanceTracker.Views.AddTransactionDialog"
         Title="Add Transaction"
-        Width="500" Height="400"
+        Width="325" Height="325"
         WindowStartupLocation="CenterOwner">
     <StackPanel Margin="10">
-        <TextBlock Text="Description" Margin="0,10,0,0"/>
-        <TextBox x:Name="DescriptionTextBox" />
-        <TextBlock Text="Category" Margin="0,10,0,0"/>
-        <TextBox x:Name="CategoryTextBox" />
-        <TextBlock Text="Amount" Margin="0,10,0,0"/>
-        <TextBox x:Name="AmountTextBox" />
-        <TextBlock Text="Is Income" Margin="0,10,0,0"/>
-        <CheckBox x:Name="IsIncomeCheckBox" />
-        <Button Content="Add" Click="OnAddClick" Margin="0,20,0,0"/>
+        <TextBlock Text="Description" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+        <TextBox x:Name="DescriptionTextBox" MaxLength="30"/> <!-- Limit description to 50 characters -->
+        <TextBlock Text="Category" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+        <TextBox x:Name="CategoryTextBox" MaxLength="20"/> <!-- Limit category to 30 characters -->
+        <TextBlock Text="Amount" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+        <TextBox x:Name="AmountTextBox"/>
+        <TextBlock Text="Is Income" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+            <CheckBox x:Name="IsIncomeCheckBox" VerticalAlignment="Center"/>
+            <Button Content="Add" Click="OnAddClick" Margin="10,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
     </StackPanel>
 </Window>

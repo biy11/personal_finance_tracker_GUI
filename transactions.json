@@ -1,0 +1,98 @@
+[
+  {
+    "Id": -1876803566,
+    "Description": "bills",
+    "Amount": 180.0,
+    "Date": "2024-06-13T08:00:32.2170826+01:00",
+    "IsIncome": false,
+    "Category": "Phone"
+  },
+  {
+    "Id": 1494207690,
+    "Description": "Taxi payment",
+    "Amount": 20.0,
+    "Date": "2024-06-13T08:02:22.2935525+01:00",
+    "IsIncome": false,
+    "Category": "Transport"
+  },
+  {
+    "Id": 491040652,
+    "Description": "Gang",
+    "Amount": 130.0,
+    "Date": "2024-06-13T08:54:32.7469558+01:00",
+    "IsIncome": false,
+    "Category": "sdsd"
+  },
+  {
+    "Id": -538515748,
+    "Description": "bug fix",
+    "Amount": 900.0,
+    "Date": "2024-06-14T01:25:31.0257328+01:00",
+    "IsIncome": true,
+    "Category": "Work"
+  },
+  {
+    "Id": -112705764,
+    "Description": "Zakat",
+    "Amount": 100000.0,
+    "Date": "2024-06-14T02:08:24.7944385+01:00",
+    "IsIncome": false,
+    "Category": "Fard"
+  },
+  {
+    "Id": 974548146,
+    "Description": "A bag Init",
+    "Amount": 500.0,
+    "Date": "2024-06-14T02:12:41.9752704+01:00",
+    "IsIncome": true,
+    "Category": "moeny"
+  },
+  {
+    "Id": 1860710494,
+    "Description": "new Update",
+    "Amount": 1000.0,
+    "Date": "2024-06-20T02:27:54.9982263+01:00",
+    "IsIncome": true,
+    "Category": "Bugs"
+  },
+  {
+    "Id": 448001888,
+    "Description": "gang",
+    "Amount": 1000.0,
+    "Date": "2024-06-20T03:08:18.0667954+01:00",
+    "IsIncome": true,
+    "Category": "maoney"
+  },
+  {
+    "Id": -144919388,
+    "Description": "new",
+    "Amount": 1500.0,
+    "Date": "2024-06-20T04:12:36.9012604+01:00",
+    "IsIncome": true,
+    "Category": "money"
+  },
+  {
+    "Id": 133623152,
+    "Description": "1.7",
+    "Amount": 1000.0,
+    "Date": "2024-06-20T04:52:14.0690749+01:00",
+    "IsIncome": true,
+    "Category": "haha"
+  },
+  {
+    "Id": -1021319913,
+    "Description": "N",
+    "Amount": 900.0,
+    "Date": "2024-06-20T05:06:49.4589286+01:00",
+    "IsIncome": true,
+    "Category": "trans"
+  },
+  {
+    "Id": 646456764,
+    "Description": "A MILLI",
+    "Amount": 1000000.0,
+    "Date": "2024-06-20T05:11:36.5229292+01:00",
+    "IsIncome": true,
+    "Category": "MILLI"
+  }
+]

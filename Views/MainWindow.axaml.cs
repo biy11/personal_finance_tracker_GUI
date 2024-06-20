@@ -1,6 +1,6 @@
-//Views/MainWindow.axaml.cs
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Newtonsoft.Json;
@@ -9,13 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace PersonalFinanceTracker.Views
 {
     public partial class MainWindow : Window
     {
         private static List<Transaction> transactions = LoadTransactions();
+        private List<Transaction> filteredTransactions = transactions;
 
         public MainWindow()
         {
@@ -23,34 +23,34 @@ namespace PersonalFinanceTracker.Views
             DataContext = this;
 
             HideAllSections();
-            MainMenuHeader.IsVisible = true;
             MainMenuSection.IsVisible = true;
-            }
+        }
 
         private void ShowTransactionsMenu_Click(object sender, RoutedEventArgs e)
         {
             HideAllSections();
             TransactionsMenuSection.IsVisible = true;
+            RefreshTransactionsList();
         }
 
-        private void AddTransaction_Click(object sender, RoutedEventArgs e)
+        private async void ShowAddTransactionDialog_Click(object sender, RoutedEventArgs e)
         {
-            HideAllSections();
-            AddTransactionSection.IsVisible = true;
+            var addTransactionDialog = new AddTransactionDialog();
+            await addTransactionDialog.ShowDialog(this);
+
+            if (addTransactionDialog.NewTransaction != null)
+            {
+                transactions.Add(addTransactionDialog.NewTransaction);
+                SaveTransactions(transactions);
+                RefreshTransactionsList();
+            }
         }
 
         private void ViewTransactions_Click(object sender, RoutedEventArgs e)
         {
             HideAllSections();
-            ViewTransactionsSection.IsVisible = true;
+            TransactionsMenuSection.IsVisible = true;
             RefreshTransactionsList();
-        }
-
-        private void DeleteTransaction_Click(object sender, RoutedEventArgs e)
-        {
-            HideAllSections();
-            DeleteTransactionSection.IsVisible = true;
-            RefreshTransactionsListForDelete();
         }
 
         private void GenerateSummaryReport_Click(object sender, RoutedEventArgs e)
@@ -100,73 +100,21 @@ namespace PersonalFinanceTracker.Views
             Close();
         }
 
-        private void OnAddClick(object sender, RoutedEventArgs e)
+        private void OnDeleteSelectedClick(object sender, RoutedEventArgs e)
         {
-            var descriptionTextBox = this.FindControl<TextBox>("DescriptionTextBox");
-            var categoryTextBox = this.FindControl<TextBox>("CategoryTextBox");
-            var amountTextBox = this.FindControl<TextBox>("AmountTextBox");
-            var isIncomeCheckBox = this.FindControl<CheckBox>("IsIncomeCheckBox");
-
-            var description = descriptionTextBox?.Text;
-            var category = categoryTextBox?.Text;
-            var amountText = amountTextBox?.Text;
-            var isIncome = isIncomeCheckBox?.IsChecked ?? false;
-
-            if (string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(category))
+            var selectedTransactions = TransactionsListBox.SelectedItems.Cast<Transaction>().ToList();
+            if (selectedTransactions.Any())
             {
-                ShowError("Description and Category cannot be empty!");
-                return;
-            }
-
-            if (decimal.TryParse(amountText, out var amount))
-            {
-                if (amount <= 0)
+                foreach (var transaction in selectedTransactions)
                 {
-                    ShowError("Amount must be positive.");
-                    return;
+                    transactions.Remove(transaction);
                 }
-
-                var newTransaction = new Transaction
-                {
-                    Id = Guid.NewGuid().GetHashCode(),
-                    Description = description,
-                    Category = category,
-                    Amount = amount,
-                    Date = DateTime.Now,
-                    IsIncome = isIncome
-                };
-
-                transactions.Add(newTransaction);
                 SaveTransactions(transactions);
                 RefreshTransactionsList();
-                HideAllSections();
-                TransactionsMenuSection.IsVisible = true;
-
-                // Clear the input fields
-                descriptionTextBox.Text = string.Empty;
-                categoryTextBox.Text = string.Empty;
-                amountTextBox.Text = string.Empty;
-                isIncomeCheckBox.IsChecked = false;
             }
             else
             {
-                ShowError("Invalid amount entered.");
-            }
-        }
-
-        private void OnDeleteClick(object sender, RoutedEventArgs e)
-        {
-            var selectedTransaction = TransactionsListBoxForDelete.SelectedItem as string;
-            if (selectedTransaction != null)
-            {
-                var transactionId = int.Parse(selectedTransaction.Split('.')[0]);
-                var transactionToRemove = transactions.FirstOrDefault(t => t.Id == transactionId);
-                if (transactionToRemove != null)
-                {
-                    transactions.Remove(transactionToRemove);
-                    SaveTransactions(transactions);
-                    RefreshTransactionsListForDelete();
-                }
+                ShowError("No transaction selected");
             }
         }
 
@@ -197,7 +145,6 @@ namespace PersonalFinanceTracker.Views
         private void BackToMenu_Click(object sender, RoutedEventArgs e)
         {
             HideAllSections();
-            MainMenuHeader.IsVisible = true;
             MainMenuSection.IsVisible = true;
         }
 
@@ -209,23 +156,15 @@ namespace PersonalFinanceTracker.Views
 
         private void HideAllSections()
         {
-            MainMenuHeader.IsVisible = false;
             MainMenuSection.IsVisible = false;
             TransactionsMenuSection.IsVisible = false;
-            AddTransactionSection.IsVisible = false;
-            ViewTransactionsSection.IsVisible = false;
-            DeleteTransactionSection.IsVisible = false;
             SummaryReportSection.IsVisible = false;
         }
 
         private void RefreshTransactionsList()
         {
-            TransactionsListBox.ItemsSource = transactions;
-        }
-
-        private void RefreshTransactionsListForDelete()
-        {
-            TransactionsListBoxForDelete.ItemsSource = transactions;
+            TransactionsListBox.ItemsSource = null; // Clear the existing items
+            TransactionsListBox.ItemsSource = filteredTransactions; // Set the new items
         }
 
         private static async void SaveTransactions(List<Transaction> transactions)
@@ -233,11 +172,11 @@ namespace PersonalFinanceTracker.Views
             try
             {
                 var json = JsonConvert.SerializeObject(transactions, Formatting.Indented);
-                await File.WriteAllTextAsync("transaction.json", json);
+                await File.WriteAllTextAsync("transactions.json", json);
             }
-            catch
+            catch (Exception ex)
             {
-                // Handle exception (e.g., log the error, show a message to the user)
+                Console.WriteLine($"Error saving transactions: {ex.Message}");
             }
         }
 
@@ -245,17 +184,69 @@ namespace PersonalFinanceTracker.Views
         {
             try
             {
-                if (File.Exists("transaction.json"))
+                if (File.Exists("transactions.json"))
                 {
-                    var json = File.ReadAllText("transaction.json");
+                    var json = File.ReadAllText("transactions.json");
                     return JsonConvert.DeserializeObject<List<Transaction>>(json) ?? new List<Transaction>();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // Handle exception (e.g., log the error, show a message to the user)
+                Console.WriteLine($"Error loading transactions: {ex.Message}");
             }
             return new List<Transaction>();
+        }
+
+        private void SortByDateComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            var selectedItem = comboBox?.SelectedItem as ComboBoxItem;
+
+            if (selectedItem != null)
+            {
+                if (selectedItem.Content.ToString() == "Sort by Date: Newest First")
+                {
+                    filteredTransactions = filteredTransactions.OrderByDescending(t => t.Date).ToList();
+                }
+                else if (selectedItem.Content.ToString() == "Sort by Date: Oldest First")
+                {
+                    filteredTransactions = filteredTransactions.OrderBy(t => t.Date).ToList();
+                }
+                RefreshTransactionsList();
+            }
+        }
+
+        private void SortByAmountComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            var selectedItem = comboBox?.SelectedItem as ComboBoxItem;
+
+            if (selectedItem != null)
+            {
+                if (selectedItem.Content.ToString() == "Sort by Amount: Highest to Lowest")
+                {
+                    filteredTransactions = filteredTransactions.OrderByDescending(t => t.Amount).ToList();
+                }
+                else if (selectedItem.Content.ToString() == "Sort by Amount: Lowest to Highest")
+                {
+                    filteredTransactions = filteredTransactions.OrderBy(t => t.Amount).ToList();
+                }
+                RefreshTransactionsList();
+            }
+        }
+
+        private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            var searchText = (sender as TextBox)?.Text.ToLower();
+            if (!string.IsNullOrWhiteSpace(searchText))
+            {
+                filteredTransactions = transactions.Where(t => t.Description.ToLower().Contains(searchText) || t.Category.ToLower().Contains(searchText)).ToList();
+            }
+            else
+            {
+                filteredTransactions = transactions;
+            }
+            RefreshTransactionsList();
         }
     }
 }
