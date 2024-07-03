@@ -1,3 +1,4 @@
+//MainWindow.axaml.cs
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -204,11 +205,11 @@ namespace PersonalFinanceTracker.Views
 
             if (selectedItem != null)
             {
-                if (selectedItem.Content.ToString() == "Sort by Date: Newest First")
+                if (selectedItem.Content.ToString() == "Newest First")
                 {
                     filteredTransactions = filteredTransactions.OrderByDescending(t => t.Date).ToList();
                 }
-                else if (selectedItem.Content.ToString() == "Sort by Date: Oldest First")
+                else if (selectedItem.Content.ToString() == "Oldest First")
                 {
                     filteredTransactions = filteredTransactions.OrderBy(t => t.Date).ToList();
                 }
@@ -223,11 +224,11 @@ namespace PersonalFinanceTracker.Views
 
             if (selectedItem != null)
             {
-                if (selectedItem.Content.ToString() == "Sort by Amount: Highest to Lowest")
+                if (selectedItem.Content.ToString() == "Highest to Lowest")
                 {
                     filteredTransactions = filteredTransactions.OrderByDescending(t => t.Amount).ToList();
                 }
-                else if (selectedItem.Content.ToString() == "Sort by Amount: Lowest to Highest")
+                else if (selectedItem.Content.ToString() == "Lowest to Highest")
                 {
                     filteredTransactions = filteredTransactions.OrderBy(t => t.Amount).ToList();
                 }

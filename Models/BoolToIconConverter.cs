@@ -9,11 +9,12 @@ namespace PersonalFinanceTracker.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool isIncome)
-            {
-                return isIncome ? "\uf155" : "\uf153"; // FontAwesome icons for money in and out
-            }
-            return "\uf128"; // Default icon
+            // if (value is bool isIncome)
+            // {
+            //     return isIncome ? "\uf155" : "\uf153"; // FontAwesome icons for money in and out
+            // }
+            // return "\uf128"; // Default icon
+            return "\u00A3";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -2,7 +2,7 @@
   {
     "Id": -1876803566,
     "Description": "bills",
-    "Amount": 180.0,
+    "Amount": -180.0,
     "Date": "2024-06-13T08:00:32.2170826+01:00",
     "IsIncome": false,
     "Category": "Phone"
@@ -10,7 +10,7 @@
   {
     "Id": 1494207690,
     "Description": "Taxi payment",
-    "Amount": 20.0,
+    "Amount": -20.0,
     "Date": "2024-06-13T08:02:22.2935525+01:00",
     "IsIncome": false,
     "Category": "Transport"
@@ -18,7 +18,7 @@
   {
     "Id": 491040652,
     "Description": "Gang",
-    "Amount": 130.0,
+    "Amount": -130.0,
     "Date": "2024-06-13T08:54:32.7469558+01:00",
     "IsIncome": false,
     "Category": "sdsd"
@@ -34,7 +34,7 @@
   {
     "Id": -112705764,
     "Description": "Zakat",
-    "Amount": 100000.0,
+    "Amount": -100000.0,
     "Date": "2024-06-14T02:08:24.7944385+01:00",
     "IsIncome": false,
     "Category": "Fard"
@@ -94,5 +94,45 @@
     "Date": "2024-06-20T05:11:36.5229292+01:00",
     "IsIncome": true,
     "Category": "MILLI"
+  },
+  {
+    "Id": -897525749,
+    "Description": "dev op",
+    "Amount": 100.0,
+    "Date": "2024-07-03T21:20:49.4984521+01:00",
+    "IsIncome": true,
+    "Category": "work"
+  },
+  {
+    "Id": -1166903900,
+    "Description": "spotify",
+    "Amount": -5.99,
+    "Date": "2024-07-03T21:41:40.3046876+01:00",
+    "IsIncome": false,
+    "Category": "subscription"
+  },
+  {
+    "Id": 305172356,
+    "Description": "Netflix",
+    "Amount": -9.99,
+    "Date": "2024-07-03T21:44:36.8465071+01:00",
+    "IsIncome": false,
+    "Category": "Subscriptions"
+  },
+  {
+    "Id": 137930197,
+    "Description": "SoloLearn",
+    "Amount": -14.50,
+    "Date": "2024-07-03T21:45:30.3270857+01:00",
+    "IsIncome": false,
+    "Category": "Subscriptions"
+  },
+  {
+    "Id": -1781087190,
+    "Description": "test1",
+    "Amount": 100.0,
+    "Date": "2024-07-04T00:22:17.1949277+01:00",
+    "IsIncome": true,
+    "Category": "Test"
   }
 ]

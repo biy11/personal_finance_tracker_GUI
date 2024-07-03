@@ -1591,11 +1591,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/bilal/C#/personal_finance_tracker_GUI/PersonalFinanceTracker.csproj",
+      "projectUniqueName": "/home/bilal/Documents/C#/personal_finance_tracker_GUI/PersonalFinanceTracker.csproj",
       "projectName": "PersonalFinanceTracker",
-      "projectPath": "/home/bilal/C#/personal_finance_tracker_GUI/PersonalFinanceTracker.csproj",
+      "projectPath": "/home/bilal/Documents/C#/personal_finance_tracker_GUI/PersonalFinanceTracker.csproj",
       "packagesPath": "/home/bilal/.nuget/packages/",
-      "outputPath": "/home/bilal/C#/personal_finance_tracker_GUI/obj/",
+      "outputPath": "/home/bilal/Documents/C#/personal_finance_tracker_GUI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/bilal/.nuget/NuGet/NuGet.Config"

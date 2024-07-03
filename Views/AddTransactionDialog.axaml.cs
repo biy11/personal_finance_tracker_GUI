@@ -1,3 +1,4 @@
+//AddTransactionDialog.axaml.cs
 #nullable enable
 
 using Avalonia;
@@ -11,7 +12,7 @@ namespace PersonalFinanceTracker.Views
 {
     public partial class AddTransactionDialog : Window
     {
-        public Transaction? NewTransaction { get; private set; } // Make NewTransaction nullable
+        public Transaction? NewTransaction { get; private set; }
 
         public AddTransactionDialog()
         {
@@ -23,7 +24,8 @@ namespace PersonalFinanceTracker.Views
             var description = this.FindControl<TextBox>("DescriptionTextBox")?.Text;
             var category = this.FindControl<TextBox>("CategoryTextBox")?.Text;
             var amountText = this.FindControl<TextBox>("AmountTextBox")?.Text;
-            var isIncome = this.FindControl<CheckBox>("IsIncomeCheckBox")?.IsChecked ?? false;
+            var isIncome = this.FindControl<RadioButton>("IncomeRadioButton")?.IsChecked ?? false;
+            var isExpense = this.FindControl<RadioButton>("ExpenseRadioButton")?.IsChecked ?? false;
 
             if (string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(category))
             {
@@ -43,24 +45,34 @@ namespace PersonalFinanceTracker.Views
                 return;
             }
 
-            if (decimal.TryParse(amountText, out var amount))
-            {
-                NewTransaction = new Transaction
-                {
-                    Id = Guid.NewGuid().GetHashCode(),
-                    Description = description,
-                    Category = category,
-                    Amount = amount,
-                    Date = DateTime.Now,
-                    IsIncome = isIncome
-                };
-
-                Close();
-            }
-            else
+            if (!decimal.TryParse(amountText, out var amount))
             {
                 ShowError("Invalid amount entered.");
+                return;
             }
+
+            if (!isIncome && !isExpense)
+            {
+                ShowError("Please select whether the transaction \nis an income or an expense.");
+                return;
+            }
+
+            if(isExpense)
+            {
+                amount = -Math.Abs(amount);
+            }
+
+            NewTransaction = new Transaction
+            {
+                Id = Guid.NewGuid().GetHashCode(),
+                Description = description,
+                Category = category,
+                Amount = amount,
+                Date = DateTime.Now,
+                IsIncome = isIncome
+            };
+
+            Close();
         }
 
         private void ShowError(string message)
@@ -71,7 +83,7 @@ namespace PersonalFinanceTracker.Views
                 Width = 300,
                 Height = 150,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,
-                Background = new SolidColorBrush(Colors.White) // Ensure background is white for readability
+                Background = new SolidColorBrush(Colors.White)
             };
 
             var stackPanel = new StackPanel { Margin = new Thickness(10) };

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "y4ZOTpPB/2Q=",
+  "dgSpecHash": "2oKmgbTmrN4=",
   "success": true,
-  "projectFilePath": "/home/bilal/C#/personal_finance_tracker_GUI/PersonalFinanceTracker.csproj",
+  "projectFilePath": "/home/bilal/Documents/C#/personal_finance_tracker_GUI/PersonalFinanceTracker.csproj",
   "expectedPackageFiles": [
     "/home/bilal/.nuget/packages/avalonia/11.0.0/avalonia.11.0.0.nupkg.sha512",
     "/home/bilal/.nuget/packages/avalonia.angle.windows.natives/2.1.0.2023020321/avalonia.angle.windows.natives.2.1.0.2023020321.nupkg.sha512",

@@ -13,18 +13,18 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PersonalFinanceTracker
-build_property.ProjectDir = /home/bilal/C#/personal_finance_tracker_GUI/
+build_property.ProjectDir = /home/bilal/Documents/C#/personal_finance_tracker_GUI/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[/home/bilal/C\#/personal_finance_tracker_GUI/App.axaml]
+[/home/bilal/Documents/C\#/personal_finance_tracker_GUI/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/bilal/C\#/personal_finance_tracker_GUI/Styles/Styles.axaml]
+[/home/bilal/Documents/C\#/personal_finance_tracker_GUI/Styles/Styles.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/bilal/C\#/personal_finance_tracker_GUI/Views/AddTransactionDialog.axaml]
+[/home/bilal/Documents/C\#/personal_finance_tracker_GUI/Views/AddTransactionDialog.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/bilal/C\#/personal_finance_tracker_GUI/Views/MainWindow.axaml]
+[/home/bilal/Documents/C\#/personal_finance_tracker_GUI/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

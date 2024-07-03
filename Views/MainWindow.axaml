@@ -1,3 +1,4 @@
+<!-- MainWindow.axaml -->
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:PersonalFinanceTracker.Views"
@@ -63,7 +64,7 @@
         </Style>
     </Window.Styles>
 
-    <Grid>
+     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -76,23 +77,44 @@
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel x:Name="MainMenuSection" HorizontalAlignment="Center">
                 <Button Content="Transactions" Click="ShowTransactionsMenu_Click" Width="200"/>
-                <Button Content="Generate Summary Report" Click="GenerateSummaryReport_Click" Width="200"/>
+                <Button Content="Summary Report" Click="GenerateSummaryReport_Click" Width="200"/>
                 <Button Content="Exit" Click="Exit_Click" Width="200"/>
             </StackPanel>
 
             <StackPanel x:Name="TransactionsMenuSection" HorizontalAlignment="Center" IsVisible="False">
                 <TextBlock Text="Transactions" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#333"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
-                    <ComboBox x:Name="SortByDateComboBox" Width="200" SelectionChanged="SortByDateComboBox_SelectionChanged">
-                        <ComboBoxItem Content="Sort by Date: Newest First"/>
-                        <ComboBoxItem Content="Sort by Date: Oldest First"/>
-                    </ComboBox>
-                    <ComboBox x:Name="SortByAmountComboBox" Width="200" SelectionChanged="SortByAmountComboBox_SelectionChanged">
-                        <ComboBoxItem Content="Sort by Amount: Highest to Lowest"/>
-                        <ComboBoxItem Content="Sort by Amount: Lowest to Highest"/>
-                    </ComboBox>
-                    <TextBox x:Name="SearchTextBox" Width="200" Watermark="Search..." KeyUp="SearchTextBox_KeyUp"/>
+
+                <!-- Centered Titles and Controls -->
+                <StackPanel HorizontalAlignment="Center">
+                    <Grid Margin="0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Titles -->
+                        <TextBlock Text="Sort by Date:" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                        <TextBlock Text="Sort by Amount:" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="5"/>
+                        <TextBlock Text="Search Transactions:" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2" Margin="5"/>
+
+                        <!-- Controls -->
+                        <ComboBox x:Name="SortByDateComboBox" Width="200" SelectionChanged="SortByDateComboBox_SelectionChanged" Grid.Row="1" Grid.Column="0" Margin="5">
+                            <ComboBoxItem Content="Newest First"/>
+                            <ComboBoxItem Content="Oldest First"/>
+                        </ComboBox>
+                        <ComboBox x:Name="SortByAmountComboBox" Width="200" SelectionChanged="SortByAmountComboBox_SelectionChanged" Grid.Row="1" Grid.Column="1" Margin="5">
+                            <ComboBoxItem Content="Highest to Lowest"/>
+                            <ComboBoxItem Content="Lowest to Highest"/>
+                        </ComboBox>
+                        <TextBox x:Name="SearchTextBox" Width="200" Watermark="Search..." KeyUp="SearchTextBox_KeyUp" Grid.Row="1" Grid.Column="2" Margin="5"/>
+                    </Grid>
                 </StackPanel>
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,0,10,0">
                     <Button Content="Back" Click="BackToMenu_Click" Width="200"/>
                     <Button Content="Add Transaction" Click="ShowAddTransactionDialog_Click" Width="200"/>
