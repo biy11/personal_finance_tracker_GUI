@@ -22,7 +22,7 @@
 
     <!-- Hover Style for Buttons -->
     <Style Selector="Button:pointerover">
-        <Setter Property="Background" Value="#1E88E5"/>
+        <Setter Property="Background" Value="#388E3C"/>
     </Style>
 
     <!-- Disabled Style for Buttons -->

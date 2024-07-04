@@ -1,13 +1,5 @@
 [
   {
-    "Id": -1876803566,
-    "Description": "bills",
-    "Amount": -180.0,
-    "Date": "2024-06-13T08:00:32.2170826+01:00",
-    "IsIncome": false,
-    "Category": "Phone"
-  },
-  {
     "Id": 1494207690,
     "Description": "Taxi payment",
     "Amount": -20.0,
@@ -72,14 +64,6 @@
     "Category": "money"
   },
   {
-    "Id": 133623152,
-    "Description": "1.7",
-    "Amount": 1000.0,
-    "Date": "2024-06-20T04:52:14.0690749+01:00",
-    "IsIncome": true,
-    "Category": "haha"
-  },
-  {
     "Id": -1021319913,
     "Description": "N",
     "Amount": 900.0,
@@ -134,5 +118,61 @@
     "Date": "2024-07-04T00:22:17.1949277+01:00",
     "IsIncome": true,
     "Category": "Test"
+  },
+  {
+    "Id": 1257515934,
+    "Description": "new",
+    "Amount": -22.0,
+    "Date": "2024-07-04T01:07:25.3438882+01:00",
+    "IsIncome": false,
+    "Category": "Food"
+  },
+  {
+    "Id": -1785891761,
+    "Description": "water",
+    "Amount": -210.0,
+    "Date": "2024-07-04T01:07:55.8516482+01:00",
+    "IsIncome": false,
+    "Category": "Bills"
+  },
+  {
+    "Id": -1109668169,
+    "Description": "Cro",
+    "Amount": 640.0,
+    "Date": "2024-07-04T01:19:17.1073576+01:00",
+    "IsIncome": true,
+    "Category": "Investment"
+  },
+  {
+    "Id": 769420231,
+    "Description": "Holiday",
+    "Amount": -230.0,
+    "Date": "2024-07-04T01:26:05.677141+01:00",
+    "IsIncome": false,
+    "Category": "Travel"
+  },
+  {
+    "Id": -132836616,
+    "Description": "MOT",
+    "Amount": -60.0,
+    "Date": "2024-07-04T01:31:15.20296+01:00",
+    "IsIncome": false,
+    "Category": "Transport"
+  },
+  {
+    "Id": 48712850,
+    "Description": "shoes",
+    "Amount": -40.0,
+    "Date": "2024-07-04T01:33:43.7597247+01:00",
+    "IsIncome": false,
+    "Category": "Shopping"
+  },
+  {
+    "Id": -1938787495,
+    "Description": "train",
+    "Amount": -6.0,
+    "Date": "2024-07-04T02:12:34.1140552+01:00",
+    "IsIncome": false,
+    "Category": "Transport"
   }
 ]

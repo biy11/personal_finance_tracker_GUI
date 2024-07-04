@@ -22,7 +22,9 @@ namespace PersonalFinanceTracker.Views
         private void OnAddClick(object sender, RoutedEventArgs e)
         {
             var description = this.FindControl<TextBox>("DescriptionTextBox")?.Text;
-            var category = this.FindControl<TextBox>("CategoryTextBox")?.Text;
+            var categoryComboBox = this.FindControl<ComboBox>("CategoryComboBox");
+            var selectedCategoryItem = categoryComboBox?.SelectedItem as ComboBoxItem;
+            var category = selectedCategoryItem?.Content?.ToString();
             var amountText = this.FindControl<TextBox>("AmountTextBox")?.Text;
             var isIncome = this.FindControl<RadioButton>("IncomeRadioButton")?.IsChecked ?? false;
             var isExpense = this.FindControl<RadioButton>("ExpenseRadioButton")?.IsChecked ?? false;
@@ -57,7 +59,7 @@ namespace PersonalFinanceTracker.Views
                 return;
             }
 
-            if(isExpense)
+            if (isExpense)
             {
                 amount = -Math.Abs(amount);
             }

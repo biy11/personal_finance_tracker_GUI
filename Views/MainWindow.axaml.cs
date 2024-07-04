@@ -1,4 +1,3 @@
-//MainWindow.axaml.cs
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -8,6 +7,7 @@ using Newtonsoft.Json;
 using PersonalFinanceTracker.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 
@@ -15,13 +15,15 @@ namespace PersonalFinanceTracker.Views
 {
     public partial class MainWindow : Window
     {
-        private static List<Transaction> transactions = LoadTransactions();
-        private List<Transaction> filteredTransactions = transactions;
+        private static ObservableCollection<Transaction> transactions = new ObservableCollection<Transaction>(LoadTransactions());
+        private ObservableCollection<Transaction> filteredTransactions;
 
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
+            filteredTransactions = new ObservableCollection<Transaction>(transactions);
+            TransactionsListBox.ItemsSource = filteredTransactions;
 
             HideAllSections();
             MainMenuSection.IsVisible = true;
@@ -164,11 +166,11 @@ namespace PersonalFinanceTracker.Views
 
         private void RefreshTransactionsList()
         {
-            TransactionsListBox.ItemsSource = null; // Clear the existing items
-            TransactionsListBox.ItemsSource = filteredTransactions; // Set the new items
+            filteredTransactions = new ObservableCollection<Transaction>(transactions);
+            TransactionsListBox.ItemsSource = filteredTransactions;
         }
 
-        private static async void SaveTransactions(List<Transaction> transactions)
+        private static async void SaveTransactions(ObservableCollection<Transaction> transactions)
         {
             try
             {
@@ -181,21 +183,21 @@ namespace PersonalFinanceTracker.Views
             }
         }
 
-        private static List<Transaction> LoadTransactions()
+        private static ObservableCollection<Transaction> LoadTransactions()
         {
             try
             {
                 if (File.Exists("transactions.json"))
                 {
                     var json = File.ReadAllText("transactions.json");
-                    return JsonConvert.DeserializeObject<List<Transaction>>(json) ?? new List<Transaction>();
+                    return new ObservableCollection<Transaction>(JsonConvert.DeserializeObject<List<Transaction>>(json) ?? new List<Transaction>());
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error loading transactions: {ex.Message}");
             }
-            return new List<Transaction>();
+            return new ObservableCollection<Transaction>();
         }
 
         private void SortByDateComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -207,13 +209,13 @@ namespace PersonalFinanceTracker.Views
             {
                 if (selectedItem.Content.ToString() == "Newest First")
                 {
-                    filteredTransactions = filteredTransactions.OrderByDescending(t => t.Date).ToList();
+                    filteredTransactions = new ObservableCollection<Transaction>(transactions.OrderByDescending(t => t.Date));
                 }
                 else if (selectedItem.Content.ToString() == "Oldest First")
                 {
-                    filteredTransactions = filteredTransactions.OrderBy(t => t.Date).ToList();
+                    filteredTransactions = new ObservableCollection<Transaction>(transactions.OrderBy(t => t.Date));
                 }
-                RefreshTransactionsList();
+                TransactionsListBox.ItemsSource = filteredTransactions;
             }
         }
 
@@ -226,13 +228,13 @@ namespace PersonalFinanceTracker.Views
             {
                 if (selectedItem.Content.ToString() == "Highest to Lowest")
                 {
-                    filteredTransactions = filteredTransactions.OrderByDescending(t => t.Amount).ToList();
+                    filteredTransactions = new ObservableCollection<Transaction>(transactions.OrderByDescending(t => t.Amount));
                 }
                 else if (selectedItem.Content.ToString() == "Lowest to Highest")
                 {
-                    filteredTransactions = filteredTransactions.OrderBy(t => t.Amount).ToList();
+                    filteredTransactions = new ObservableCollection<Transaction>(transactions.OrderBy(t => t.Amount));
                 }
-                RefreshTransactionsList();
+                TransactionsListBox.ItemsSource = filteredTransactions;
             }
         }
 
@@ -241,13 +243,13 @@ namespace PersonalFinanceTracker.Views
             var searchText = (sender as TextBox)?.Text.ToLower();
             if (!string.IsNullOrWhiteSpace(searchText))
             {
-                filteredTransactions = transactions.Where(t => t.Description.ToLower().Contains(searchText) || t.Category.ToLower().Contains(searchText)).ToList();
+                filteredTransactions = new ObservableCollection<Transaction>(transactions.Where(t => t.Description.ToLower().Contains(searchText) || t.Category.ToLower().Contains(searchText)));
             }
             else
             {
-                filteredTransactions = transactions;
+                filteredTransactions = new ObservableCollection<Transaction>(transactions);
             }
-            RefreshTransactionsList();
+            TransactionsListBox.ItemsSource = filteredTransactions;
         }
     }
 }
